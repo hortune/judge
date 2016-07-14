@@ -1,0 +1,10 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(false);
+	int a,b,c,d,e,f;
+	while(cin>>a>>b>>c>>d>>e>>f)
+		cout<<(a+b+c)*(a+b+c)-a*a-c*c-e*e<<endl; 
+	
+}
