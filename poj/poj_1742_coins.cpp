@@ -1,6 +1,3 @@
-//多開一個陣列
-//紀錄次數 因此可以用遞推一個一個做
-//用 TOP DOWN 時間複雜度太高
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -24,7 +21,7 @@ int main()
 			for (int i = 0; i <= b-A[j]; i++)
 				mem[i] = 0;
 			for (int i = 0; i <= b-A[j]; i++)
-				if (dp[i] && mem[i] < C[j] && dp[i + A[j]] == 0)// 如果原先可以的 就不用特地讓他多限制
+				if (dp[i] && mem[i] < C[j] && dp[i + A[j]] == 0)
 				{
 					dp[i + A[j]] = 1;
 					mem[i + A[j]] = mem[i] + 1;
