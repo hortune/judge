@@ -1,6 +1,6 @@
 # 線段樹題
 # (same), (flip), (positive), (update)
-
+import sys
 class Node:
     def __init__(self, num=0, left=None, right=None, setnum=0):
         self.state = num
@@ -11,7 +11,7 @@ class Node:
 class SegmentTree:
     '''
     SegmentTree:
-        maximum segment tree
+        set, flip segment_tree
     '''
     def __init__(self, n):
         self.seg_tree = [Node() for i in range(4*(1 << n.bit_length()) + 1)]
@@ -36,8 +36,9 @@ class SegmentTree:
             self.seg_tree[2*index+1].setnum = node.setnum
             node.setnum = 0
             
-            self.seg_tree[2*index].state = 0 
-            self.seg_tree[2*index+1].state = 0
+            self.seg_tree[2*index].state = node.state 
+            self.seg_tree[2*index+1].state = node.state
+            node.state = 0
             return
         
         self.seg_tree[2*index].state ^= node.state
@@ -102,7 +103,7 @@ class SegmentTree:
             return self.query(index, node_index*2 + 1)
 
 n, m = map(int,input().split())
-
+input = sys.stdin.readline
 base = 100006
 shift = 1
 seg_tree = SegmentTree(base*2 + 1)
@@ -112,20 +113,19 @@ for idx in range(m):
     y = int(y)
     if x == '<':
         if y > 0:
-            seg_tree.flip(0 + shift, y-1 + shift)
-            seg_tree.setnum(y + shift, base, 1)
+            seg_tree.flip(0 + shift, y-1 + shift) # < 4 | flip [0, 3]
+            seg_tree.setnum(y + shift, base, 1)   # < 4 | setnum [4, inf] 1
         else:
-            seg_tree.setnum(abs(y) + 1 + shift, base, 1)  # 1 positive
+            seg_tree.setnum(abs(y) + 1 + shift, base, 1)  # < -4 | setnum [5, inf] 1
     else:
         if y < 0:
-            seg_tree.flip(0 + shift, abs(y)-1 + shift)
-            seg_tree.setnum(abs(y) + shift, base, 2)
+            seg_tree.flip(0 + shift, abs(y)-1 + shift) # > -4 | flip [0, 3]
+            seg_tree.setnum(abs(y) + shift, base, 2)   # > -4 | setnum [4, inf] 2
         else:
-            seg_tree.setnum(y + 1 + shift, base, 2) # 2 negative
+            seg_tree.setnum(y + 1 + shift, base, 2)    # > 4  | setnum [5, inf] 2
 ans = []
 for num in nums:
     flip, setnum = seg_tree.query(abs(num) + shift)
-    print(num, flip, setnum)
     if setnum == 2:
         ans.append(-abs(num)*(1-2*flip))
     elif setnum == 1:

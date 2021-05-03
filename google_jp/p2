@@ -1,0 +1,104 @@
+Problem description
+You are given a tree-shaped undirected graph consisting of N nodes and N-1 edges (N is up to 50). For a node X in the tree, let d(X) be the distance (the number of edges) from X to its farthest node. Your task is to compute the minimum value of d(X) for the given tree.
+
+The tree has the following properties:
+
+It is connected.
+It has no cycles.
+For any pair of distinct nodes X and Y in the tree, there is exactly one path connecting X and Y.
+Input
+Test cases will be provided in the following multiline text format, using only ASCII characters. The first line contains one integer, C, which is the number of test cases that will follow. The second line is blank. From the third line onwards, the test cases separated by a blank line will follow. Each test case describes a tree and has the following format.
+
+N
+X1 Y1
+X2 Y2
+...
+XN-1 YN-1
+N is the number of nodes in the tree. Nodes are numbered 1 through N.
+
+Xi Yi represents an undirected edge between nodes Xi and Yi. There are N - 1 edges.
+
+Guarantees
+All numbers in the input are integers.
+Number of test cases: 1 <= C <= 100
+Number of nodes: 2 <= N <= 50
+Node IDs: 1 <= Xi <=N, 1 <= Yi <= N, Xi != Yi
+The given graph is always a tree.
+Note: You can assume that the input data is valid and satisfies all constraints. Your solution does not need to include error handling code.
+
+Output
+For each test case, output the result in the following format:
+
+Case #k: R
+where k is the index of the test case, starting from 1, and R is the minimum of d(X) for the given tree.
+
+All tokens in the output should be separated by a single space.
+
+Sample input
+File: task2-sample-input.txt (You can download the file using right click -> "Save this link as" or similar)
+
+5
+
+6
+1 4
+2 3
+3 4
+4 5
+5 6
+
+6
+1 3
+4 5
+5 6
+3 2
+3 4
+
+2
+1 2
+
+10
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+9 10
+
+10
+7 8
+7 9
+4 5
+1 3
+3 4
+6 7
+4 6
+2 3
+9 10
+Output for sample input
+File: task2-sample-output.txt (You can download the file using right click -> "Save this link as" or similar)
+
+Case #1: 2
+Case #2: 2
+Case #3: 1
+Case #4: 5
+Case #5: 3
+Visualization of Sample Input
+
+
+Test input
+Please submit output for this input in the submission form below.
+
+File: task2-test-input.txt (You can download the file using right click -> "Save this link as" or similar)
+
+
+Submit
+Source Code:
+
+Output File:
+
+Do NOT include any personal information in your submissions.
+Please make sure to submit the output for the test input, not for the sample input.
+Submit

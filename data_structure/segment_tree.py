@@ -21,7 +21,7 @@ class SegmentTree:
 
         node.left = left
         node.right = right
-        
+
         if left != right:
             mid = (left + right) >> 1
             self.build(2*index, left, mid)
@@ -35,23 +35,23 @@ class SegmentTree:
         if node.left == node.right == update_index:
             node.num = num
             return
-        
+
         mid = (node.left + node.right) >> 1
 
         if node.left <= update_index <= mid:
             self.update(update_index, num, node_index*2)
         else:
             self.update(update_index, num, node_index*2 + 1)
-        
+
         self.seg_tree[node_index].num = max(self.seg_tree[node_index*2].num,
                                             self.seg_tree[node_index*2+1].num)
 
     def query(self, left, right, node_index=1):
         node = self.seg_tree[node_index]
-        
+
         if left == node.left and right == node.right:
             return node.num
-        
+
         mid = (node.left + node.right) >> 1
         # Split the query
         if mid >= right:
@@ -65,8 +65,8 @@ class SegmentTree:
 
 if __name__ == "__main__":
     seg_tree = SegmentTree(10)
-    seg_tree.update(1,2)
-    seg_tree.update(2,3)
-    seg_tree.update(10,1000)
-    seg_tree.update(4,500)
-    print(seg_tree.query(1,10))
+    seg_tree.update(1, 2)
+    seg_tree.update(2, 3)
+    seg_tree.update(10, 1000)
+    seg_tree.update(4, 500)
+    print(seg_tree.query(1, 10))
